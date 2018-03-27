@@ -1,0 +1,15 @@
+<h2>{{title}}</h2>
+<form>
+	<div class="form-group">
+		<label>Author Name</label>
+		{{input class="form-control" value=model.author.name}}
+	</div>
+	<label>Books</label>
+	<select style="height:100px" class="form-control" multiple onchange={{action "selectBook"}}>
+	    {{#each model.books as |book|}}
+	    <option value={{book.id}}>{{book.title}}</option>
+	    {{/each}}
+	</select>
+
+	<button class="btn btn-md btn-success" {{action 'saveAuthor' model.author}}>{{buttonLabel}}</button>
+</form>

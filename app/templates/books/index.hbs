@@ -1,0 +1,45 @@
+<h1>Books</h1>
+
+{{#link-to 'books.new' class="btn btn-xs btn-primary"}}New{{/link-to}} <br>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>
+      Book Title
+      <br><small class="small not-bold">(Click on name for editing)</small>
+    </th>
+    <th>Release Year</th>
+    <th class="vtop"></th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each model as |book|}}
+    <tr>
+      <td>
+        {{#if book.isEditing}}
+          <form {{action 'savebook' book on='submit'}} class="form-inline">
+            <div class="input-group">
+              {{input value=book.title class="form-control"}}
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-success" disabled={{book.isNotValid}}>Save</button>
+                <button class="btn btn-danger" {{action 'cancelbookEdit' book}}>Cancel</button>
+              </div>
+            </div>
+          </form>
+        {{else}}
+          <span {{action 'editbook' book}}>{{book.title}}</span>
+        {{/if}}
+        
+      </td>
+      <td>{{book.releaseYear}}</td>
+      <td>
+        <span class="label label-danger" {{action 'deletebook' book}} style="cursor:pointer;">Delete</span>    
+      </td>
+    </tr>
+    {{else}}
+        <tr>
+          <td colspan="6"> No records...</td>
+        </tr>
+  {{/each}}
+  </tbody>
+</table> 

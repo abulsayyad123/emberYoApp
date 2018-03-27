@@ -1,0 +1,23 @@
+<h2>Contact Page</h2>
+
+<div class="row">
+	<div class="col-md-6">
+		<form action="POST">
+			<div class="form-group">
+				<label>Email</label>
+				{{input type="email" value=emailAddress class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
+			</div>
+			<div class="form-group">
+				<label>Message</label>
+				{{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=message}}
+			</div>
+			<div class="form-group">
+				<button disabled={{unless isLongAndValid 'disabled'}} {{action 'sendMessage'}} class="btn btn-primary btn-lg btn-block">Send Message</button>
+			</div>
+		</form>
+		{{#if responseMessage}}
+	   		<div class="alert alert-success">{{responseMessage}}</div>
+	 	{{/if}}
+	</div>
+
+</div>
