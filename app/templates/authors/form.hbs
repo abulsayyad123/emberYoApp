@@ -11,5 +11,11 @@
 	    {{/each}}
 	</select>
 
+	{{#each checkboxObjects as |obj|}}
+	    {{input type="checkbox" name=obj.id checked=obj.isAdmin}} <span>{{obj.name}}</span> <br>
+	{{/each}}
+	
 	<button class="btn btn-md btn-success" {{action 'saveAuthor' model.author}}>{{buttonLabel}}</button>
 </form>
+<br><br>
+<button class="btn btn-md btn-success" {{action 'getFilteredCheckbox'}}>Check Filtered checkbox</button>
